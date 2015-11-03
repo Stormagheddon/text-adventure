@@ -20,5 +20,8 @@ public class Game {
 		Door door7 = new Door(room9.EastWall, room10.WestWall);
 		Door door8 = new Door(room3.SouthWall, room6.NorthWall);
 		Door door9 = new Door(room6.WestWall, room7.EastWall);
+		
+		Character character = new Character();
+		character.Location = room1;
 	}
 }
