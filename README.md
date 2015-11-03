@@ -2,9 +2,17 @@
 
 ## To-do's.
 
-1. Move project into Repo. 
-2. Create room class.
-3. Create player class.
-4. Unit test for room class.
-5. Construct inital map. 
-6. Create command interface. 
+1. Create character class.
+1. Unit test for room class.
+1. Construct inital map. 
+1. Create command interface. Start with the ability to move through the map. 
+1. Update character class to include inventory.
+1. Update door class to have locked doors.
+1. Add classes to support NPCs.
+1. Load map from data structure.
+1. Allow user to save progress.
+1. Update room class to support multi-floor levels. Includes adding ceiling and floor classes.
+1. Update command interface to support combat. 
+1. Update character class to allow user to equip items.
+1. Update character class to support levels. 
+1. Adding support for currency. 
