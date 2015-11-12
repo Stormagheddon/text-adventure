@@ -29,40 +29,45 @@ public class Game {
 		Character character = new Character();
 		character.Location = room1;
 		
-		String command = null;
-		while (!Objects.equals(command, "quit")) {
-			command = readLine("Enter Command: ");
-			if (Objects.equals(command, "quit")) {
-				printf("Goodbye!");
-			} else {
-				printf(command);
-			}
-		}
+		String input = Input.getInput();
+		System.out.println(input);
+		
+		
+		
+//		String command = null;
+//		while (!Objects.equals(command, "quit")) {
+//			command = readLine("Enter Command: ");
+//			if (Objects.equals(command, "quit")) {
+//				printf("Goodbye!");
+//			} else {
+//				printf(command);
+//			}
+//		}
 	}
 	
-	private static void printf(String format, Object...args) {
-        Console c = System.console();
-        if (c != null) {
-             c.printf(format + "\n", args);
-        } else {
-    		System.out.printf(format + "\n", args);
-        }
-	}
-	
-	private static String readLine(String prompt) {
-        String line = null;
-        Console c = System.console();
-        if (c != null) {
-             line = c.readLine(prompt);
-        } else {
-            System.out.print(prompt);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            try {
-                 line = bufferedReader.readLine();
-            } catch (IOException e) { 
-                //Ignore    
-            }
-        }
-        return line;
-    }
+//	private static void printf(String format, Object...args) {
+//        Console c = System.console();
+//        if (c != null) {
+//             c.printf(format + "\n", args);
+//        } else {
+//    		System.out.printf(format + "\n", args);
+//        }
+//	}
+//	
+//	private static String readLine(String prompt) {
+//        String line = null;
+//        Console c = System.console();
+//        if (c != null) {
+//             line = c.readLine(prompt);
+//        } else {
+//            System.out.print(prompt);
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//            try {
+//                 line = bufferedReader.readLine();
+//            } catch (IOException e) { 
+//                //Ignore    
+//            }
+//        }
+//        return line;
+//    }
 }
