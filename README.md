@@ -2,10 +2,11 @@
 
 ## To-do's.
 
-1. Create character class.
-1. Unit test for room class.
-1. Construct inital map. 
-1. Create command interface. Start with the ability to move through the map. 
+1. Recreate map and add room descriptions.
+1. Add item class.
+1. Update room class to hold items
+1. Implement "Look".
+1. Implement "Get".
 1. Update character class to include inventory.
 1. Update door class to have locked doors.
 1. Add classes to support NPCs.
