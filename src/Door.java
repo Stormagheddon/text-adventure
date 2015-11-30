@@ -7,7 +7,8 @@ public class Door {
 	public Door (Wall wall1, Wall wall2){
 		this.Wall1 = wall1;
 		this.Wall2 = wall2;			
-			
+		wall1.Door = this;
+		wall2.Door = this;
 	}
 	
 }
