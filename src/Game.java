@@ -1,12 +1,7 @@
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Objects;
 
 public class Game {
 	public static void main (String args[]){
-		Room room1 = new Room("Room 1");
+		Room room1 = new Room("The entrance to the Maze");
 		Room room2 = new Room("Room 2");
 		Room room3 = new Room("Room 3");
 		Room room4 = new Room("Room 4");
@@ -29,6 +24,9 @@ public class Game {
 		Character character = new Character();
 		character.Location = room1;
 		
+		System.out.println("Welcome to the maze!");
+		System.out.println("You see a sign that says 'Help'");
+		
 		while (true){
 			String input = Input.getInput();
 			System.out.println(input);
@@ -48,11 +46,9 @@ public class Game {
 				
 				if(noun.equals("north")){
 					handleGo(currentLocation, character, currentLocation.NorthWall);
-					
 				}
 				else if(noun.equals("south")){
-					handleGo(currentLocation, character, currentLocation.SouthWall);
-					
+					handleGo(currentLocation, character, currentLocation.SouthWall);	
 				}
 				else if(noun.equals("west")){
 					handleGo(currentLocation, character, currentLocation.WestWall);
@@ -64,6 +60,17 @@ public class Game {
 					System.out.println("You can't go that way.");
 				}
 				
+			}
+			
+			else if(verb.equals("look")){
+				
+				if(noun.equals("room")){
+					System.out.println("This is a room.");
+				}
+				else if(noun.equals("help")){
+					System.out.println("To move, use the 'go' command followed by a direction. Ex. 'Go North'.");
+					System.out.println("To look at something, use the 'look' command followed by what you want to look at. Ex. 'Look Room'");
+				}
 			}
 			
 			else{
