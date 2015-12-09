@@ -2,12 +2,9 @@
 
 ## To-do's.
 
-1. Recreate map and add room descriptions.
-1. Add item class.
-1. Update room class to hold items
-1. Implement "Look".
-1. Implement "Get".
-1. Update character class to include inventory.
+1. Refactor Get command.
+1. Add drop command.
+1. Add inventory command.
 1. Update door class to have locked doors.
 1. Add classes to support NPCs.
 1. Load map from data structure.
