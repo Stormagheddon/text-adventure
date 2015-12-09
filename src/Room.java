@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 
 public class Room {
 	Wall NorthWall;
 	Wall SouthWall;
 	Wall EastWall;
 	Wall WestWall;
-	
+	ArrayList Ground;
 	String Description;
 	
 	public Room (String description){
@@ -17,5 +18,6 @@ public class Room {
 		this.EastWall.Room = this;
 		this.WestWall.Room = this;
 		this.Description = description;
+		this.Ground = new ArrayList();
 	}
 }

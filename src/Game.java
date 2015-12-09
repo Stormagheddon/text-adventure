@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Game {
 	public static void main (String args[]){
@@ -25,6 +26,10 @@ public class Game {
 		Door door10 = new Door(room10.SouthWall, room11.NorthWall);
 		Door door11 = new Door(room11.EastWall, room12.WestWall);
 		
+		room1.Ground.add(new Item("Key"));
+		room1.Ground.add(new Item("Sword"));
+		room1.Ground.add(new Item("Lantern"));
+		room1.Ground.add(new Item("Scroll"));
 		
 		Character character = new Character();
 		character.Location = room1;
@@ -79,6 +84,29 @@ public class Game {
 					if(noun.equals("room")){
 						System.out.println("This is a room.");
 					}
+				}
+				
+				else if(verb.equals("get")){
+					Item item = null;
+					
+					for(int counter = 0; counter < character.Location.Ground.size(); counter++){
+						item = (Item)character.Location.Ground.get(counter);
+						if(item.Type.equals(noun)){
+							break;
+						}
+						else{
+							item = null;
+						}
+					}
+					if(item != null){
+						character.Location.Ground.remove(item);	
+						character.Inventory.add(item);
+						System.out.println("You picked up a " + item.Type + ".");
+					}
+					else{
+						System.out.println("You didn't find a " + noun + ".");
+					}
+					
 				}
 			
 				else{
