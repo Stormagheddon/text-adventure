@@ -87,26 +87,7 @@ public class Game {
 				}
 				
 				else if(verb.equals("get")){
-					Item item = null;
-					
-					for(int counter = 0; counter < character.Location.Ground.size(); counter++){
-						item = (Item)character.Location.Ground.get(counter);
-						if(item.Type.equals(noun)){
-							break;
-						}
-						else{
-							item = null;
-						}
-					}
-					if(item != null){
-						character.Location.Ground.remove(item);	
-						character.Inventory.add(item);
-						System.out.println("You picked up a " + item.Type + ".");
-					}
-					else{
-						System.out.println("You didn't find a " + noun + ".");
-					}
-					
+					handleGet(character, noun);
 				}
 			
 				else{
@@ -129,5 +110,28 @@ public class Game {
 		else{
 			System.out.println("You can't go that way.");
 		}
+	}
+	
+	private static void handleGet(Character character, String itemName){
+		Item item = null;
+		
+		for(int counter = 0; counter < character.Location.Ground.size(); counter++){
+			item = (Item)character.Location.Ground.get(counter);
+			if(item.Type.equals(itemName)){
+				break;
+			}
+			else{
+				item = null;
+			}
+		}
+		if(item != null){
+			character.Location.Ground.remove(item);	
+			character.Inventory.add(item);
+			System.out.println("You picked up a " + item.Type + ".");
+		}
+		else{
+			System.out.println("You didn't find a " + itemName + ".");
+		}
+		
 	}
 }
