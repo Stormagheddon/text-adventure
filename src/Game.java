@@ -103,6 +103,10 @@ public class Game {
 					handleGet(character, noun);
 				}
 							
+				else if(verb.equals("drop")){
+					handleDrop(character, noun);
+				}
+				
 				else{
 					System.out.println("Not a valid command.");
 				}
@@ -122,6 +126,32 @@ public class Game {
 		}
 		else{
 			System.out.println("You can't go that way.");
+		}
+	}
+	
+	private static void handleDrop(Character character, String itemName){
+		// This will drop an item from the characters inventory
+		// Will first find the item in the inventory
+		// Then will move the item from the inventory to the ground.
+	
+		Item item = null;
+		
+		for(int counter = 0; counter < character.Inventory.size(); counter++){
+			item = (Item)character.Inventory.get(counter);
+			if(item.Type.equals(itemName)){
+				break;
+			}
+			else{
+				item = null;
+			}
+		}
+		if(item != null){
+			character.Inventory.remove(item);
+			character.Location.Ground.add(item);
+			System.out.println("You dropped a " + item.Type + ".");
+		}
+		else{
+			System.out.println("You don't have that item.");
 		}
 	}
 	
