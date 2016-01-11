@@ -51,6 +51,19 @@ public class Game {
 				System.out.println("The command to look is 'Look (item)'");
 			}
 			
+			else if(input.equals("inventory")){
+				if(character.Inventory.size() > 0){
+					System.out.println("Your current inventory: ");
+					for(int counter = 0; counter < character.Inventory.size(); counter++){
+						Item item = (Item)character.Inventory.get(counter);
+						System.out.println(item.Type);
+					}
+				}
+				else{
+					System.out.println("You don't have any items");
+				}
+			}
+			
 			else{
 				String[] parts = input.split(" ");
 			
@@ -89,7 +102,7 @@ public class Game {
 				else if(verb.equals("get")){
 					handleGet(character, noun);
 				}
-			
+							
 				else{
 					System.out.println("Not a valid command.");
 				}
@@ -132,6 +145,5 @@ public class Game {
 		else{
 			System.out.println("You didn't find a " + itemName + ".");
 		}
-		
 	}
 }
