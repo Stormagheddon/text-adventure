@@ -2,9 +2,6 @@
 
 ## To-do's.
 
-1. Refactor Get command.
-1. Add drop command.
-1. Add inventory command.
 1. Update door class to have locked doors.
 1. Add classes to support NPCs.
 1. Load map from data structure.
