@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Game {
 	public static void main (String args[]){
+		Item key1 = new Item("Key");
+		Item key2 = new Item("Key");
 		Room room1 = new Room("The Courtyard");
 		Room room2 = new Room("The south end of the Main Hall");
 		Room room3 = new Room("The Library");
@@ -14,8 +16,8 @@ public class Game {
 		Room room10 = new Room("Room 10");
 		Room room11 = new Room("Room 11");
 		Room room12 = new Room("Room 12");
-		Door door1 = new Door(room1.NorthWall, room2.SouthWall);
-		Door door2 = new Door(room2.EastWall, room9.WestWall);
+		Door door1 = new Door(room1.NorthWall, room2.SouthWall, key1);
+		Door door2 = new Door(room2.EastWall, room9.WestWall, key2);
 		Door door3 = new Door(room2.WestWall, room3.EastWall);
 		Door door4 = new Door(room4.EastWall, room3.WestWall);
 		Door door5 = new Door(room4.NorthWall, room5.SouthWall);
@@ -26,10 +28,11 @@ public class Game {
 		Door door10 = new Door(room10.SouthWall, room11.NorthWall);
 		Door door11 = new Door(room11.EastWall, room12.WestWall);
 		
-		room1.Ground.add(new Item("Key"));
+		room1.Ground.add(key1);
 		room1.Ground.add(new Item("Sword"));
 		room1.Ground.add(new Item("Lantern"));
 		room1.Ground.add(new Item("Scroll"));
+		room2.Ground.add(key2);
 		
 		Character character = new Character();
 		character.Location = room1;
@@ -118,11 +121,37 @@ public class Game {
 	
 	private static void handleGo(Room currentLocation, Character character, Wall wall){
 		if(wall.Door != null){
-			Room newLocation = wall.Door.Wall1.Room != currentLocation ? 
-					wall.Door.Wall1.Room : 
-					wall.Door.Wall2.Room;
-			character.Location = newLocation;
-			System.out.println("You're in " + newLocation.Description + ".");
+			boolean allowMove = true;
+					
+			if(wall.Door.Key != null && wall.Door.isLocked){
+				Item item = null;
+				for(int counter = 0; counter < character.Inventory.size(); counter++){
+					item = (Item)character.Inventory.get(counter);
+					if(item.Type.equals("key") && item == wall.Door.Key){
+						break;
+					}
+					else{
+						item = null;
+					}
+				}
+				
+				if(item != null){
+					wall.Door.isLocked = false;
+					System.out.println("You unlocked the door.");
+				}
+				else{
+					allowMove = false;
+					System.out.println("The door is locked.");
+				}
+			}
+			
+			if(allowMove){
+				Room newLocation = wall.Door.Wall1.Room != currentLocation ? 
+						wall.Door.Wall1.Room : 
+						wall.Door.Wall2.Room;
+				character.Location = newLocation;
+				System.out.println("You're in " + newLocation.Description + ".");
+			}
 		}
 		else{
 			System.out.println("You can't go that way.");
