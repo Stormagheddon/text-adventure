@@ -2,7 +2,6 @@
 
 ## To-do's.
 
-1. Add item names
 1. Allow user to save progress.
 1. Add classes to support NPCs.
 1. Load map from data structure.
