@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Game {
 	public static void main (String args[]){
-		Item key1 = new Item("Key");
-		Item key2 = new Item("Key");
+		Item key1 = new Item("Key", "Iron Key");
+		Item key2 = new Item("Key", "Rusty Key");
 		Room room1 = new Room("The Courtyard");
 		Room room2 = new Room("The south end of the Main Hall");
 		Room room3 = new Room("The Library");
@@ -29,9 +29,9 @@ public class Game {
 		Door door11 = new Door(room11.EastWall, room12.WestWall);
 		
 		room1.Ground.add(key1);
-		room1.Ground.add(new Item("Sword"));
-		room1.Ground.add(new Item("Lantern"));
-		room1.Ground.add(new Item("Scroll"));
+		room1.Ground.add(new Item("Sword", "Sword"));
+		room1.Ground.add(new Item("Lantern", "Lantern"));
+		room1.Ground.add(new Item("Scroll", "Scroll"));
 		room2.Ground.add(key2);
 		
 		Character character = new Character();
@@ -59,7 +59,7 @@ public class Game {
 					System.out.println("Your current inventory: ");
 					for(int counter = 0; counter < character.Inventory.size(); counter++){
 						Item item = (Item)character.Inventory.get(counter);
-						System.out.println(item.Type);
+						System.out.println(item.Type + " - " + item.name);
 					}
 				}
 				else{
@@ -68,12 +68,17 @@ public class Game {
 			}
 			
 			else{
-				String[] parts = input.split(" ");
+				//String[] parts = input.indexOf(' ');
 			
 				//TODO handle case when a noun is not provided.
-				String verb = parts[0];
-				String noun = parts[1];
+				//String verb = parts[0];
+				//String noun = parts[1];
 			
+				//Finding the first space
+				int firstSpace = input.indexOf(' ');
+				String verb = input.substring(0, firstSpace);
+				String noun = input.substring(firstSpace + 1, input.length());
+				
 				if(verb.equals("go")){
 					Room currentLocation = character.Location;
 				
@@ -127,7 +132,7 @@ public class Game {
 				Item item = null;
 				for(int counter = 0; counter < character.Inventory.size(); counter++){
 					item = (Item)character.Inventory.get(counter);
-					if(item.Type.equals("key") && item == wall.Door.Key){
+					if(item.Type.toLowerCase().equals("key") && item == wall.Door.Key){
 						break;
 					}
 					else{
@@ -167,7 +172,7 @@ public class Game {
 		
 		for(int counter = 0; counter < character.Inventory.size(); counter++){
 			item = (Item)character.Inventory.get(counter);
-			if(item.Type.equals(itemName)){
+			if(item.name.toLowerCase().equals(itemName)){
 				break;
 			}
 			else{
@@ -177,7 +182,7 @@ public class Game {
 		if(item != null){
 			character.Inventory.remove(item);
 			character.Location.Ground.add(item);
-			System.out.println("You dropped a " + item.Type + ".");
+			System.out.println("You dropped: " + item.name);
 		}
 		else{
 			System.out.println("You don't have that item.");
@@ -189,7 +194,7 @@ public class Game {
 		
 		for(int counter = 0; counter < character.Location.Ground.size(); counter++){
 			item = (Item)character.Location.Ground.get(counter);
-			if(item.Type.equals(itemName)){
+			if(item.name.toLowerCase().equals(itemName)){
 				break;
 			}
 			else{
@@ -199,10 +204,10 @@ public class Game {
 		if(item != null){
 			character.Location.Ground.remove(item);	
 			character.Inventory.add(item);
-			System.out.println("You picked up a " + item.Type + ".");
+			System.out.println("You picked up: " + item.name);
 		}
 		else{
-			System.out.println("You didn't find a " + itemName + ".");
+			System.out.println("You didn't find: " + itemName);
 		}
 	}
 }
