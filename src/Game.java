@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Game {
@@ -7,7 +13,7 @@ public class Game {
 		
 		System.out.println("Welcome to the game!");
 		System.out.println("Type 'help' to see the commands.");
-		System.out.println("You are in the Courtyard.");
+		System.out.println("You are in the " + character.Location.Description + ".");
 		
 		while (true){
 			String input = Input.getInput();
@@ -15,6 +21,20 @@ public class Game {
 			
 			if(input.equals("quit")){
 				break;
+			}
+			
+			else if(input.equals("save")){
+				try (
+					FileOutputStream file = new FileOutputStream("save.dat");
+					ObjectOutputStream out = new ObjectOutputStream(file);	
+				) {
+					out.writeObject(character); //serialize the object
+				} catch(FileNotFoundException exc){
+					System.out.println("Encountered FileNotFoundException");
+				} catch(IOException exc){
+					System.out.println("Encountered IOException.");
+				}
+				
 			}
 			
 			else if(input.equals("help")){
@@ -180,8 +200,26 @@ public class Game {
 	}
 	
 	private static Character getGame(){
-		//TODO add game save loading logic
-		return createGame();
+		Character character = null;
+		
+		try (
+			FileInputStream file = new FileInputStream("save.dat");
+			ObjectInputStream in = new ObjectInputStream(file);	
+		) {
+			character = (Character)in.readObject(); //serialize the object
+		} catch(FileNotFoundException exc){
+			System.out.println("Encountered FileNotFoundException.");
+		} catch(IOException exc){
+			System.out.println("Encountered IOException.");
+		} catch(ClassNotFoundException exc){
+			System.out.println("Encountered ClassNotFoundException.");
+		}
+		
+		if(character == null){
+			character = createGame();
+		}
+		
+		return character;
 	}
 	
 	private static Character createGame(){

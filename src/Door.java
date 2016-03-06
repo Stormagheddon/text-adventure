@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Door {
+public class Door implements Serializable {
 
 	Wall Wall1;
 	Wall Wall2;
