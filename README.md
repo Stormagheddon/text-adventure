@@ -2,7 +2,7 @@
 
 ## To-do's.
 
-1. Allow user to save progress.
+1. Create save slots, descriptions for each slot, and describe what the user will see.
 1. Add classes to support NPCs.
 1. Load map from data structure.
 1. Update room class to support multi-floor levels. Includes adding ceiling and floor classes.
