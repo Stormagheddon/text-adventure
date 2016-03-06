@@ -16,7 +16,7 @@ public class Game {
 		System.out.println("You are in the " + character.Location.Description + ".");
 		
 		while (true){
-			String input = Input.getInput();
+			String input = Input.getInput(">");
 			System.out.println(input);
 			
 			if(input.equals("quit")){
@@ -206,7 +206,14 @@ public class Game {
 			FileInputStream file = new FileInputStream("save.dat");
 			ObjectInputStream in = new ObjectInputStream(file);	
 		) {
-			character = (Character)in.readObject(); //serialize the object
+			character = (Character)in.readObject();
+			if(character != null){
+				String input = Input.getInput("Do you want to load your save? (Y/N)");
+				if(input != null && input.equals("n")){
+					character = null;
+				}
+			}
+			
 		} catch(FileNotFoundException exc){
 			System.out.println("Encountered FileNotFoundException.");
 		} catch(IOException exc){
