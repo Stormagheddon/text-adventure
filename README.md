@@ -13,7 +13,8 @@
 1. Adding support for currency. 
 
 
-Combat system:
+##Combat system:
+
 Flee: Roll d20, if 9< you run away. If 10> you fail to run away, and monster takes turn.
 
 Use Item: You use an item, and the monster does not take a turn.
