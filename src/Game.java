@@ -95,6 +95,10 @@ public class Game {
 					}
 				}
 				
+				else if(verb.equals("talk")){
+					
+				}
+				
 				else if(verb.equals("get")){
 					handleGet(character, noun);
 				}
@@ -261,6 +265,9 @@ public class Game {
 		room1.Ground.add(new Item("Lantern", "Lantern"));
 		room1.Ground.add(new Item("Scroll", "Scroll"));
 		room2.Ground.add(key2);
+		
+		room1.NonPlayerCharacters.add(new NonPlayerCharacter("Bob", false));
+		room2.NonPlayerCharacters.add(new NonPlayerCharacter("Joe", false));
 		
 		Character character = new Character();
 		character.Location = room1;

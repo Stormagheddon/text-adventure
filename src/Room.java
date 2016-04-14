@@ -7,6 +7,7 @@ public class Room implements Serializable {
 	Wall EastWall;
 	Wall WestWall;
 	ArrayList Ground;
+	ArrayList NonPlayerCharacters;
 	String Description;
 	
 	public Room (String description){
@@ -20,5 +21,6 @@ public class Room implements Serializable {
 		this.WestWall.Room = this;
 		this.Description = description;
 		this.Ground = new ArrayList();
+		this.NonPlayerCharacters = new ArrayList();
 	}
 }
