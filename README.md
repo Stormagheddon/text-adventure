@@ -2,7 +2,7 @@
 
 ## To-do's.
 
-1. Add classes to support friendly NPCs having rotating dialogue and inventories.
+1. Make it so NPCs have inventories and that the player is able to take from said inventories.
 1. Add hostile NPCs who attack on sight.
 1. Add a combat system (Attack, Use item, Flee). 
 1. Create save slots, descriptions for each slot, and describe what the user will see.
