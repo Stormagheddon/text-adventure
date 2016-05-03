@@ -96,7 +96,7 @@ public class Game {
 				}
 				
 				else if(verb.equals("talk")){
-					
+					handleTalk(character.Location, noun);
 				}
 				
 				else if(verb.equals("get")){
@@ -148,10 +148,43 @@ public class Game {
 						wall.Door.Wall2.Room;
 				character.Location = newLocation;
 				System.out.println("You're in " + newLocation.Description + ".");
+				
+				if(newLocation.NonPlayerCharacters.size() > 0){
+					System.out.println("Characters in room: ");
+					for(int counter = 0; counter < newLocation.NonPlayerCharacters.size(); counter++){
+						NonPlayerCharacter npc = (NonPlayerCharacter)newLocation.NonPlayerCharacters.get(counter);
+						System.out.println(npc.name);
+					}
+				}
 			}
 		}
 		else{
 			System.out.println("You can't go that way.");
+		}
+	}
+	
+	private static void handleTalk(Room room, String npcName){
+		if(room.NonPlayerCharacters.size() > 0){
+			NonPlayerCharacter npc = null;
+			
+			for(int counter = 0; counter < room.NonPlayerCharacters.size(); counter++){
+				npc = (NonPlayerCharacter)room.NonPlayerCharacters.get(counter);
+				if(npc.name.toLowerCase().equals(npcName)){
+					break;
+				}
+				else{
+					npc = null;
+				}
+			}
+			if(npc != null){
+				System.out.println(npc.speak());
+			}
+			else{
+				System.out.println("That is not a character.");
+			}
+		}
+		else{
+			System.out.println("There is no one in this room.");
 		}
 	}
 	
@@ -266,7 +299,11 @@ public class Game {
 		room1.Ground.add(new Item("Scroll", "Scroll"));
 		room2.Ground.add(key2);
 		
-		room1.NonPlayerCharacters.add(new NonPlayerCharacter("Bob", false));
+		NonPlayerCharacter bob = new NonPlayerCharacter("Bob", false);
+		bob.Dialogue.add("My name is Bob.");
+		bob.Dialogue.add("This is a game.");
+		bob.Dialogue.add("This is my third dialogue.");
+		room1.NonPlayerCharacters.add(bob);
 		room2.NonPlayerCharacters.add(new NonPlayerCharacter("Joe", false));
 		
 		Character character = new Character();
