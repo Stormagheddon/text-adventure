@@ -2,9 +2,9 @@
 
 ## To-do's.
 
-1. Make it so NPCs have inventories and that the player is able to take from said inventories.
-1. Add hostile NPCs who attack on sight.
-1. Add a combat system (Attack, Use item, Flee). 
+1. Properly handle combat outcomes.
+1. Improve attack system by adding rounds.
+1. When NPC's have 0 health, make sure they are unable to interact with character.
 1. Create save slots, descriptions for each slot, and describe what the user will see.
 1. Load map from data structure.
 1. Update room class to support multi-floor levels. Includes adding ceiling and floor classes.
