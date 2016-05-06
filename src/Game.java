@@ -154,6 +154,10 @@ public class Game {
 					for(int counter = 0; counter < newLocation.NonPlayerCharacters.size(); counter++){
 						NonPlayerCharacter npc = (NonPlayerCharacter)newLocation.NonPlayerCharacters.get(counter);
 						System.out.println(npc.name);
+						
+						if(npc.isHostile){
+							npc.attack(character);
+						}
 					}
 				}
 			}
@@ -304,7 +308,7 @@ public class Game {
 		bob.Dialogue.add("This is a game.");
 		bob.Dialogue.add("This is my third dialogue.");
 		room1.NonPlayerCharacters.add(bob);
-		room2.NonPlayerCharacters.add(new NonPlayerCharacter("Joe", false));
+		room2.NonPlayerCharacters.add(new NonPlayerCharacter("Joe", true));
 		
 		Character character = new Character();
 		character.Location = room1;
