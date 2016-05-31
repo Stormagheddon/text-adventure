@@ -9,4 +9,8 @@ public class Character implements Serializable {
 	public Character(){
 		this.Inventory = new ArrayList();
 	}
+	
+	public boolean isAlive(){
+		return health > 0;
+	}
 }

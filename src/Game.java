@@ -111,6 +111,10 @@ public class Game {
 					System.out.println("Not a valid command.");
 				}
 			}
+			
+			if(!character.isAlive()){
+				break;
+			}
 		}
 		
 		System.out.println("Goodbye");
@@ -153,10 +157,23 @@ public class Game {
 					System.out.println("Characters in room: ");
 					for(int counter = 0; counter < newLocation.NonPlayerCharacters.size(); counter++){
 						NonPlayerCharacter npc = (NonPlayerCharacter)newLocation.NonPlayerCharacters.get(counter);
-						System.out.println(npc.name);
 						
-						if(npc.isHostile){
-							npc.attack(character);
+						if(npc.isAlive()){
+							System.out.println(npc.name);
+							
+							if(npc.isHostile){
+								//Outcomes:
+								//0 = lost. 
+								//1 = flee.
+								//2 = win.
+								int result = npc.attack(character);
+								
+								//If the action is flee, move character to previous location.
+								if(result == 1){
+									character.Location = currentLocation;
+									System.out.println("You flee back to " + currentLocation.Description);
+								}
+							}
 						}
 					}
 				}
