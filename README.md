@@ -6,10 +6,15 @@ Second Room: Rusty Key
 
 Go (direction)
 Talk (npc)
+
 Get (item)
+
 Drop (item)
+
 Inventory
+
 Attack
+
 Flee
 
 ## To-do's.
