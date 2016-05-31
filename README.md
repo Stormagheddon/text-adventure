@@ -1,10 +1,19 @@
 # text-adventure
 
+## Items and Commands.
+First Room: Sword, Lantern, Scoll, Iron Key
+Second Room: Rusty Key
+
+Go (direction)
+Talk (npc)
+Get (item)
+Drop (item)
+Inventory
+Attack
+Flee
+
 ## To-do's.
 
-1. Properly handle combat outcomes.
-1. Improve attack system by adding rounds.
-1. When NPC's have 0 health, make sure they are unable to interact with character.
 1. Create save slots, descriptions for each slot, and describe what the user will see.
 1. Load map from data structure.
 1. Update room class to support multi-floor levels. Includes adding ceiling and floor classes.
